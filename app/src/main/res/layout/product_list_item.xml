@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:paddingBottom="5dp"
+    android:paddingTop="5px">
+
+    <ImageView
+        android:id="@+id/listItemImage"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:contentDescription="@string/textSampleDescription" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/listItemName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="none"
+            android:paddingBottom="5dp"
+            android:singleLine="true"
+            android:text="@string/textSampleLong"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/listItemPrice"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".40"
+                android:paddingLeft="10dp"
+                android:paddingRight="5dp"
+                android:text="@string/textSamplePrice"
+                android:textSize="14dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/listItemListPrice"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".40"
+                android:text="@string/textSamplePrice"
+                android:textSize="10dp"
+                android:textStyle="italic" />
+
+            <TextView
+                android:id="@+id/listItemDiscount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".20"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:text="@string/textSampleVat"
+                android:textSize="12dp"
+                android:textStyle="bold"
+                android:textColor="@android:color/holo_red_dark"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

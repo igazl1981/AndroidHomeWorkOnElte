@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">FitBuilder</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="empty_list">Nincs megjeleníthető tartalom</string>
+    <string name="btnActions">Akciók</string>
+    <string name="btnCategories">Kategóriák</string>
+    <string name="textSample">Sample</string>
+    <string name="textSampleLong">This is a very Long Sample Text</string>
+    <string name="textSamplePrice">11.380 HUF</string>
+    <string name="textSampleVat">27 %</string>
+    <string name="textSampleDescription">Sample Description</string>
+    <string name="menuTextSortPriceDesc">Ár szerint csökkenő</string>
+    <string name="menuTextSortPriceAsc">Ár szerint növekvő</string>
+    <string name="menuTextSortNameDesc">Név szerint csökkenő</string>
+    <string name="menuTextSortNameAsc">Név szerint növekvő</string>
+    <string name="menuTextSort">Rendezés</string>
+    <string name="menuTextLogin">Bejelentkezés</string>
+    <string name="textLoginUsername">Felhasználónév</string>
+    <string name="textLoginPassword">Jelszó</string>
+    <string name="textLoginBtnLogin">Bejelentkezek</string>
+    <string name="textLoginPasswordEmpty">Password field empty</string>
+    <string name="textLoginUsernameEmpty">Email field empty</string>
+    <string name="textBothEmpty">Email and Password field are empty</string>
+    <string name="msgCheckNetwork">Hálózat ellenőrzés</string>
+    <string name="msgCategoryDownload">Termékek letöltése</string>
+    <string name="msgProductDownload">Termékek letöltése</string>
+    <string name="msgLoading">Töltés..</string>
+    <string name="msgNetworkError">Error in Network Connection</string>
+    <string name="msgProductDownloadError">Nem sikerült a termékeket letölteni</string>
+    <string name="msgCategoryDownloadError">Nem sikerült a kategóriákat letölteni</string>
+    <string name="textMsgContacting">Kapcsolódás a szerverhez</string>
+    <string name="textMsgLoggingIn">Bejelentkezés ...</string>
+    <string name="textMsgLoggingErrorPassUser">Rossz felhasználónév és jelszó</string>
+    <string name="labelActivityLogin">Bejelentkezés</string>
+    <string name="textMsgLoggedIn">Sikeresen bejelentkeztél</string>
+    <string name="textMsgGettingUserSpace">Felhasználói adatok töltése</string>
+    <string name="textMsgGettingUserData">Felhasználói adatok tárolása</string>
+    <string name="menuTextRefresh">Frissítés</string>
+    <string name="menuTextLogout">Kilépés</string>
+
+</resources>

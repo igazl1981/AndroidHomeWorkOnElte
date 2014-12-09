@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/image_detail_image"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:contentDescription="@string/textSampleDescription" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/text_detail_name"
+                android:textSize="26dp"
+                android:gravity="center_horizontal"
+                android:text="@string/textSampleLong"/>
+            </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="5dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".50"
+                android:id="@+id/text_detail_price"
+                android:textStyle="bold"
+                android:text="@string/textSamplePrice"
+                android:textSize="20dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".35"
+                android:id="@+id/text_detail_list_price"
+                android:text="@string/textSamplePrice"
+                android:textStyle="italic"
+                android:textSize="12dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".15"
+                android:id="@+id/text_detail_discount"
+                android:text="@string/textSampleVat"
+                android:textStyle="bold"
+                android:textColor="@android:color/holo_red_dark"
+                android:textSize="14dp" />
+
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".10"
+            android:id="@+id/text_detail_description"
+            android:textSize="12dp"
+            android:paddingTop="5dp"
+            android:text="@string/textSampleLong" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".10"
+            android:id="@+id/text_detail_content"
+            android:textSize="12dp"
+            android:paddingTop="5dp"
+            android:text="@string/textSampleLong" />
+
+
+    </LinearLayout>
+    </ScrollView>

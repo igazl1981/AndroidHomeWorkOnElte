@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:yourapp="http://schemas.android.com/apk/res-auto">
+            <item
+                android:id="@+id/action_login"
+                android:icon="@drawable/ic_action_accounts"
+                android:title="@string/menuTextLogin"
+                yourapp:showAsAction="ifRoom" />
+            <item
+                android:id="@+id/action_logout"
+                android:icon="@drawable/ic_action_undo"
+                android:title="@string/menuTextLogout"
+                yourapp:showAsAction="ifRoom" />
+        <group android:id="@+id/main_group_sort">
+            <item
+                android:id="@+id/action_refresh"
+                android:icon="@drawable/ic_action_refresh"
+                android:title="@string/menuTextRefresh"
+                yourapp:showAsAction="ifRoom" />
+            <item
+                android:id="@+id/action_sort"
+                android:icon="@drawable/ic_action_sort_by_size"
+                android:title="@string/menuTextSort"
+                yourapp:showAsAction="ifRoom">
+                <menu>
+                    <item
+                        android:id="@+id/menu_sort_by_name_asc"
+                        android:title="@string/menuTextSortNameAsc" />
+                    <item
+                        android:id="@+id/menu_sort_by_name_desc"
+                        android:title="@string/menuTextSortNameDesc" />
+                    <item
+                        android:id="@+id/menu_sort_by_price_asc"
+                        android:title="@string/menuTextSortPriceAsc" />
+                    <item
+                        android:id="@+id/menu_sort_by_price_desc"
+                        android:title="@string/menuTextSortPriceDesc" />
+                </menu>
+            </item>
+        </group>
+</menu>
