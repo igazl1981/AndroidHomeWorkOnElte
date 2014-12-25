@@ -16,9 +16,6 @@ import com.fitbuilder.productbrowser.models.Product;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-/**
- * Created by igazl on 2014.12.02..
- */
 public class ProductDetailFragment extends Fragment {
 
     private Product currentProduct;

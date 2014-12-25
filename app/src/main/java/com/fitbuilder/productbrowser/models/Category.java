@@ -5,9 +5,6 @@ import org.json.JSONObject;
 
 import java.io.Serializable;
 
-/**
- * Created by igazl on 2014.12.03..
- */
 public class Category implements Serializable {
 
     private int id;

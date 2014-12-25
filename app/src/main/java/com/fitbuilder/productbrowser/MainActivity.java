@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.fitbuilder.productbrowser.config.Globals;
 import com.fitbuilder.productbrowser.fragments.CategoriesListFragment;
+import com.fitbuilder.productbrowser.fragments.OrdersListFragment;
 import com.fitbuilder.productbrowser.fragments.ProductDetailFragment;
 import com.fitbuilder.productbrowser.fragments.ProductsListFragment;
 import com.fitbuilder.productbrowser.lib.UserFunctions;
@@ -38,6 +39,8 @@ public class MainActivity extends ActionBarActivity implements
     private CategoriesListFragment categoriesListFragment;
 
     private ProductsListFragment productListFragment;
+
+    private OrdersListFragment ordersListFragment;
 
     private Category selectedCategory;
 
@@ -81,6 +84,7 @@ public class MainActivity extends ActionBarActivity implements
                 invalidateOptionsMenu();
             }
         }
+        invalidateOptionsMenu();
 
     }
 
@@ -108,7 +112,9 @@ public class MainActivity extends ActionBarActivity implements
 
         if (actionMenu != null) {
             actionMenu.setGroupVisible(R.id.main_group_sort, !canBack);
+            actionMenu.setGroupVisible(R.id.main_group_user, !canBack);
         }
+
 
         if (!canBack) {
             if (selectedCategory != null)
@@ -124,13 +130,13 @@ public class MainActivity extends ActionBarActivity implements
         getMenuInflater().inflate(R.menu.main_activity_actions, menu);*/
 
         MenuItem mLogin = menu.findItem(R.id.action_login);
-        MenuItem mLogout = menu.findItem(R.id.action_logout);
+        //MenuItem mLogout = menu.findItem(R.id.action_logout);
         MenuItem mUser = menu.findItem(R.id.action_user);
 
         if (mLogin != null) {
             mLogin.setVisible(!showLogout);
         }
-        if (mLogout != null) {
+        if (mUser != null) {
 //            mLogout.setVisible(showLogout);
             mUser.setVisible(showLogout);
         }
@@ -147,6 +153,19 @@ public class MainActivity extends ActionBarActivity implements
             case R.id.action_login:
                 Log.d("FBLog", "START LOGIN");
                 startActivityForResult(new Intent(this, LoginActivity.class), REQUEST_CODE_LOGIN);
+                break;
+            case R.id.action_orders:
+                if (showLogout) {
+                    if (ordersListFragment == null)
+                        ordersListFragment = new OrdersListFragment();
+                    Bundle args = new Bundle();
+                    args.putSerializable("USER_ID", new UserFunctions().getUserId(getApplicationContext()));
+                    replaceFragment(ordersListFragment, args);
+                }
+                else {
+                    Toast.makeText(getApplicationContext(),
+                            getString(R.string.textMsgLoggedIn), Toast.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.action_logout:
                 Log.d("FBLog", "LOGOUT CLICKED");
@@ -177,6 +196,7 @@ public class MainActivity extends ActionBarActivity implements
     @Override
     public boolean onSupportNavigateUp() {
         getSupportFragmentManager().popBackStackImmediate();
+        invalidateOptionsMenu();
         return true;
     }
 
@@ -209,6 +229,7 @@ public class MainActivity extends ActionBarActivity implements
             selectedCategory = category;
             productListFragment.refreshList(selectedCategory);
             getSupportFragmentManager().popBackStackImmediate();
+            invalidateOptionsMenu();
         }
         catch (Exception e) {
             Log.d("FBLog", e.getMessage());

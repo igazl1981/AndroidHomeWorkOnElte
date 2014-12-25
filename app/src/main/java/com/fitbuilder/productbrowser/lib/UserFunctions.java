@@ -8,6 +8,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -41,5 +42,11 @@ public class UserFunctions  {
         UserDbHandler db = new UserDbHandler(context);
 
         return db.getRowCount() > 0;
+    }
+
+    public int getUserId(Context context) {
+        UserDbHandler db = new UserDbHandler(context);
+        HashMap user = db.getUserDetails();
+        return Integer.parseInt(user.get("user_id").toString());
     }
 }
