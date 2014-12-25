@@ -78,6 +78,7 @@ public class LoginActivity extends Activity {
         protected void onPreExecute() {
 
             super.onPreExecute();
+            Log.d("FBLog", "NetCheck PreExecute");
             checkDialog = new ProgressDialog(LoginActivity.this);
             checkDialog.setTitle(getString(R.string.msgCheckNetwork));
             checkDialog.setMessage(getString(R.string.msgLoading));
@@ -112,7 +113,8 @@ public class LoginActivity extends Activity {
 
         @Override
         protected void onPostExecute(Boolean network) {
-            checkDialog.dismiss();
+            if (checkDialog != null)
+                checkDialog.dismiss();
             if (network) {
                 new ProcessLogin().execute();
             }

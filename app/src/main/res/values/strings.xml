@@ -40,5 +40,9 @@
     <string name="textMsgGettingUserData">Felhasználói adatok tárolása</string>
     <string name="menuTextRefresh">Frissítés</string>
     <string name="menuTextLogout">Kilépés</string>
+    <string name="labelActivityActions">Akciók</string>
+    <string name="btnActionsOnlyOn">Csak Akciósok</string>
+    <string name="menuTextUserFunctions">Felhasználói funkciók</string>
+    <string name="menuTextOrders">Rendeléseim</string>
 
 </resources>

@@ -9,9 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.fitbuilder.productbrowser.R;
 import com.fitbuilder.productbrowser.config.Globals;
@@ -24,7 +26,8 @@ import java.util.ArrayList;
 
 public class ProductsListFragment extends ListFragment implements
         ProductsDownloader.ProductsDownloaderInterface,
-        AbsListView.OnScrollListener {
+        AbsListView.OnScrollListener,
+        CompoundButton.OnCheckedChangeListener {
 
     private Globals.ProductSort sortBy = Globals.ProductSort.NAME_ASC;
     private int itemDownloadSize = 10;
@@ -33,8 +36,20 @@ public class ProductsListFragment extends ListFragment implements
     private int previousTotalItemCount = 0;
     private boolean loading = true;
     private int startingPageIndex = 0;
+    private boolean actionsOnly = false;
 
     Category selectedCategory;
+
+    private ProductsDownloader downloader;
+    private ArrayList<Product> products;
+    private ProductsListCallbacks callbacks;
+
+    private boolean downloadStarted = false;
+
+    private ToggleButton actionsButton;
+    private Button categoriesButton;
+
+    private LinearLayout grpButtons;
 
     @Override
     public void onScrollStateChanged(AbsListView view, int scrollState) {
@@ -77,26 +92,22 @@ public class ProductsListFragment extends ListFragment implements
     private void loadMore(int currentPage, int totalItemCount) {
         downloadStarted = true;
         downloader = new ProductsDownloader(this, getActivity());
-
         downloader.execute(generateUrl(currentPage));
 
         Log.d("FBLog", "SCROLL: Page:" + String.valueOf(currentPage) + "; TotalCount: " + String.valueOf(totalItemCount));
     }
 
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        if (buttonView.getId() == R.id.btnActions) {
+            actionsOnly = buttonView.isChecked();
+            refreshList();
+        }
+    }
+
     public interface ProductsListCallbacks {
         public void productSelect(Product product);
     }
-
-    private ProductsDownloader downloader;
-    private ArrayList<Product> products;
-    private ProductsListCallbacks callbacks;
-
-    private boolean downloadStarted = false;
-
-    private Button actionsButton,
-            categoriesButton;
-
-    private LinearLayout grpButtons;
 
     @Override
     public void onAttach(Activity activity) {
@@ -136,13 +147,17 @@ public class ProductsListFragment extends ListFragment implements
         Log.d("FBLog", "ProductsListFragment onCreateView");
         try {
             View v = inflater.inflate(R.layout.fragment_products_list, container, false);
-            actionsButton = (Button) v.findViewById(R.id.btnActions);
-            actionsButton.setEnabled(false);
+            actionsButton = (ToggleButton) v.findViewById(R.id.btnActions);
+            actionsButton.setOnCheckedChangeListener((android.widget.CompoundButton.OnCheckedChangeListener) this);
+//            actionsButton.setEnabled(false);
             categoriesButton = (Button) v.findViewById(R.id.btnCategories);
             categoriesButton.setOnClickListener((View.OnClickListener) callbacks);
 
             grpButtons = (LinearLayout) v.findViewById(R.id.grpProductistBtns);
-            grpButtons.setVisibility(LinearLayout.GONE);
+            if (products == null)
+                grpButtons.setVisibility(LinearLayout.GONE);
+            else
+                grpButtons.setVisibility(LinearLayout.VISIBLE);
             return v;
         } catch (Exception e) {
             Log.d("FBLog", e.getMessage());
@@ -158,8 +173,6 @@ public class ProductsListFragment extends ListFragment implements
         Log.d("FBLog", "ProductsListFragment onStart");
         if (products == null && !downloadStarted) {
             refreshList(null);
-            //downloader.execute("http://php.android.sportnutrition.hu/index.php");
-            //Log.d("FBLog", "downloader executed");
         }
         if (products != null)
             getListView().setOnScrollListener(this);
@@ -244,6 +257,10 @@ public class ProductsListFragment extends ListFragment implements
 
         if (selectedCategory != null)
             url.append("&category=").append(selectedCategory.getId());
+
+        if (actionsOnly)
+            url.append("&actions=").append(1);
+
 
         Log.d("FBLog", url.toString());
 

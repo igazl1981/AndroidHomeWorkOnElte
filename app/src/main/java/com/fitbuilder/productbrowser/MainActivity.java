@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import com.fitbuilder.productbrowser.config.Globals;
@@ -124,10 +125,15 @@ public class MainActivity extends ActionBarActivity implements
 
         MenuItem mLogin = menu.findItem(R.id.action_login);
         MenuItem mLogout = menu.findItem(R.id.action_logout);
-        if (mLogin != null)
+        MenuItem mUser = menu.findItem(R.id.action_user);
+
+        if (mLogin != null) {
             mLogin.setVisible(!showLogout);
-        if (mLogout != null)
-            mLogout.setVisible(showLogout);
+        }
+        if (mLogout != null) {
+//            mLogout.setVisible(showLogout);
+            mUser.setVisible(showLogout);
+        }
 
         return true;
     }
@@ -212,8 +218,6 @@ public class MainActivity extends ActionBarActivity implements
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btnActions:
-                break;
             case R.id.btnCategories:
                 if (categoriesListFragment == null) {
                     categoriesListFragment = new CategoriesListFragment();
@@ -221,10 +225,6 @@ public class MainActivity extends ActionBarActivity implements
                 replaceFragment(categoriesListFragment, null);
                 break;
         }
-    }
-
-    public void showButtons(boolean show) {
-
     }
 
     private void replaceFragment(Fragment fragment, Bundle args) {

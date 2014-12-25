@@ -2,6 +2,7 @@ package com.fitbuilder.productbrowser.fragments;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
@@ -12,16 +13,27 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.fitbuilder.productbrowser.R;
+import com.fitbuilder.productbrowser.config.Globals;
 import com.fitbuilder.productbrowser.gui.CategoryAdapter;
 import com.fitbuilder.productbrowser.models.Category;
 import com.fitbuilder.productbrowser.net.CategoryDownloader;
+import com.fitbuilder.productbrowser.net.NetChecker;
 
 import java.util.ArrayList;
 
-/**
- * Created by igazl on 2014.12.03..
- */
-public class CategoriesListFragment extends ListFragment implements CategoryDownloader.CategoryDownloaderInterface {
+public class CategoriesListFragment extends ListFragment implements CategoryDownloader.CategoryDownloaderInterface, NetChecker.NetCheckerInterface {
+
+    @Override
+    public void NetCheckSuccess() {
+        downloader = new CategoryDownloader(this, getActivity());
+        downloader.execute(Globals.CATEGORY_LIST_URL);
+    }
+
+    @Override
+    public void NetCheckFailed() {
+        Toast.makeText(getActivity().getApplicationContext(),
+                getActivity().getString(R.string.msgNetworkError), Toast.LENGTH_SHORT).show();
+    }
 
     public interface CategoryListCallbacks {
         public void categorySelected(Category category);
@@ -72,8 +84,7 @@ public class CategoriesListFragment extends ListFragment implements CategoryDown
         super.onStart();
 
         if (categories == null) {
-            downloader = new CategoryDownloader(this, getActivity());
-            downloader.execute("http://php.android.sportnutrition.hu/get_categories.php");
+            new NetChecker(this, getActivity()).execute();
         }
     }
 
@@ -114,4 +125,5 @@ public class CategoriesListFragment extends ListFragment implements CategoryDown
     public String getName() {
         return "CategoriesListFragment";
     }
+
 }
